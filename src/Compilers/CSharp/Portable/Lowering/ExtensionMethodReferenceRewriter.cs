@@ -181,6 +181,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                              { Name: nameof(VisitCollectionElementInitializer) } => !method.IsExtensionMethod, // Expression tree context. At the moment an extension method cannot be used in expression tree here.
                              { Name: nameof(VisitAwaitableInfo) } => method is { Name: "GetResult", IsExtensionMethod: false }, // Cannot be an extension method
                              { Name: nameof(VisitMethodSymbolWithExtensionRewrite), DeclaringType: { } declaringType } => declaringType == typeof(ExtensionMethodReferenceRewriter),
+                             { Name: nameof(VisitMethodInfo) } => !method.IsExtensionMethod, // Cannot be an extension method
                              _ => false
                          });
 

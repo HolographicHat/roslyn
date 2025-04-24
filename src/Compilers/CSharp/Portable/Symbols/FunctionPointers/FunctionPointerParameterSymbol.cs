@@ -84,6 +84,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         internal override bool IsCallerFilePath => false;
         internal override bool IsCallerLineNumber => false;
         internal override bool IsCallerMemberName => false;
+        internal override bool IsCallerMember => false;
         internal override int CallerArgumentExpressionParameterIndex => -1;
         internal override FlowAnalysisAnnotations FlowAnalysisAnnotations => FlowAnalysisAnnotations.None;
         internal override ImmutableHashSet<string> NotNullIfParameterNotNull => ImmutableHashSet<string>.Empty;

@@ -20,6 +20,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         internal sealed override bool IsCallerMemberName => _underlyingParameter.IsCallerMemberName;
 
+        internal sealed override bool IsCallerMember => _underlyingParameter.IsCallerMember;
+
         internal sealed override int CallerArgumentExpressionParameterIndex => _underlyingParameter.CallerArgumentExpressionParameterIndex;
 
         internal sealed override ImmutableArray<int> InterpolatedStringHandlerArgumentIndexes => throw ExceptionUtilities.Unreachable(); // Tracked by https://github.com/dotnet/roslyn/issues/76130 : Follow up

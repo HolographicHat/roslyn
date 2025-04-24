@@ -430,6 +430,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         internal override bool IsCallerMemberName => _underlyingParameter.IsCallerMemberName;
 
+        internal override bool IsCallerMember => _underlyingParameter.IsCallerMember;
+
         internal override int CallerArgumentExpressionParameterIndex => _underlyingParameter.CallerArgumentExpressionParameterIndex;
 
         internal override ImmutableArray<int> InterpolatedStringHandlerArgumentIndexes => _underlyingParameter.InterpolatedStringHandlerArgumentIndexes;

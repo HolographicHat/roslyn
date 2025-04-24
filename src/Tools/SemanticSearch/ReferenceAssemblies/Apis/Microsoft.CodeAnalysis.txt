@@ -1827,6 +1827,7 @@ Microsoft.CodeAnalysis.OperationKind.Loop
 Microsoft.CodeAnalysis.OperationKind.MemberInitializer
 Microsoft.CodeAnalysis.OperationKind.MethodBody
 Microsoft.CodeAnalysis.OperationKind.MethodBodyOperation
+Microsoft.CodeAnalysis.OperationKind.MethodInfo
 Microsoft.CodeAnalysis.OperationKind.MethodReference
 Microsoft.CodeAnalysis.OperationKind.NameOf
 Microsoft.CodeAnalysis.OperationKind.NegatedPattern
@@ -2187,6 +2188,7 @@ Microsoft.CodeAnalysis.Operations.IMethodBodyBaseOperation
 Microsoft.CodeAnalysis.Operations.IMethodBodyBaseOperation.get_BlockBody
 Microsoft.CodeAnalysis.Operations.IMethodBodyBaseOperation.get_ExpressionBody
 Microsoft.CodeAnalysis.Operations.IMethodBodyOperation
+Microsoft.CodeAnalysis.Operations.IMethodInfoOperation
 Microsoft.CodeAnalysis.Operations.IMethodReferenceOperation
 Microsoft.CodeAnalysis.Operations.IMethodReferenceOperation.get_IsVirtual
 Microsoft.CodeAnalysis.Operations.IMethodReferenceOperation.get_Method
@@ -2459,6 +2461,7 @@ Microsoft.CodeAnalysis.Operations.OperationVisitor.VisitLocalReference(Microsoft
 Microsoft.CodeAnalysis.Operations.OperationVisitor.VisitLock(Microsoft.CodeAnalysis.Operations.ILockOperation)
 Microsoft.CodeAnalysis.Operations.OperationVisitor.VisitMemberInitializer(Microsoft.CodeAnalysis.Operations.IMemberInitializerOperation)
 Microsoft.CodeAnalysis.Operations.OperationVisitor.VisitMethodBodyOperation(Microsoft.CodeAnalysis.Operations.IMethodBodyOperation)
+Microsoft.CodeAnalysis.Operations.OperationVisitor.VisitMethodInfo(Microsoft.CodeAnalysis.Operations.IMethodInfoOperation)
 Microsoft.CodeAnalysis.Operations.OperationVisitor.VisitMethodReference(Microsoft.CodeAnalysis.Operations.IMethodReferenceOperation)
 Microsoft.CodeAnalysis.Operations.OperationVisitor.VisitNameOf(Microsoft.CodeAnalysis.Operations.INameOfOperation)
 Microsoft.CodeAnalysis.Operations.OperationVisitor.VisitNegatedPattern(Microsoft.CodeAnalysis.Operations.INegatedPatternOperation)
@@ -2590,6 +2593,7 @@ Microsoft.CodeAnalysis.Operations.OperationVisitor`2.VisitLocalReference(Microso
 Microsoft.CodeAnalysis.Operations.OperationVisitor`2.VisitLock(Microsoft.CodeAnalysis.Operations.ILockOperation,`0)
 Microsoft.CodeAnalysis.Operations.OperationVisitor`2.VisitMemberInitializer(Microsoft.CodeAnalysis.Operations.IMemberInitializerOperation,`0)
 Microsoft.CodeAnalysis.Operations.OperationVisitor`2.VisitMethodBodyOperation(Microsoft.CodeAnalysis.Operations.IMethodBodyOperation,`0)
+Microsoft.CodeAnalysis.Operations.OperationVisitor`2.VisitMethodInfo(Microsoft.CodeAnalysis.Operations.IMethodInfoOperation,`0)
 Microsoft.CodeAnalysis.Operations.OperationVisitor`2.VisitMethodReference(Microsoft.CodeAnalysis.Operations.IMethodReferenceOperation,`0)
 Microsoft.CodeAnalysis.Operations.OperationVisitor`2.VisitNameOf(Microsoft.CodeAnalysis.Operations.INameOfOperation,`0)
 Microsoft.CodeAnalysis.Operations.OperationVisitor`2.VisitNegatedPattern(Microsoft.CodeAnalysis.Operations.INegatedPatternOperation,`0)

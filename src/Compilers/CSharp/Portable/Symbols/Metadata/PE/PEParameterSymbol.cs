@@ -179,6 +179,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE
         /// </summary>        
         private int _lazyCallerArgumentExpressionParameterIndex = -2;
 
+        private bool? _lazyCallerMember;
+
         /// <summary>
         /// Attributes filtered out from m_lazyCustomAttributes, ParamArray, etc.
         /// </summary>
@@ -736,6 +738,24 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE
                     value = _packedFlags.SetWellKnownAttribute(flag, isCallerMemberName);
                 }
                 return value;
+            }
+        }
+
+        internal override bool IsCallerMember
+        {
+            get
+            {
+                if (_lazyCallerMember.HasValue)
+                {
+                    return _lazyCallerMember.Value;
+                }
+                var info = _moduleSymbol.Module.FindTargetAttribute(_handle, AttributeDescription.CallerMemberAttribute);
+                _lazyCallerMember = info.HasValue
+                                    && !HasCallerLineNumberAttribute
+                                    && !HasCallerFilePathAttribute
+                                    && !HasCallerMemberNameAttribute
+                                    && CallerArgumentExpressionParameterIndex == -1;
+                return _lazyCallerMember.Value;
             }
         }
 

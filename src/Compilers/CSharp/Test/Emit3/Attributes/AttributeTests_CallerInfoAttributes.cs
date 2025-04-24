@@ -5950,5 +5950,84 @@ void M(int i, [CallerArgumentExpression(""i"")] in string s = ""default value"")
                 AssertEx.Equal(["""System.Runtime.CompilerServices.CallerArgumentExpressionAttribute("value")"""], indexer.Parameters[1].GetAttributes().SelectAsArray(attr => attr.ToString()));
             }
         }
+
+        private MetadataReference CallerMemberAttributeReference
+        {
+            get
+            {
+                if (field == null)
+                {
+                    string source = @"
+using System;
+namespace System.Runtime.CompilerServices
+{
+    [AttributeUsage(AttributeTargets.Parameter)]
+    public class CallerMemberAttribute : Attribute { }
+}
+";
+                    field = CreateCompilation(source).EmitToImageReference();
+                }
+                return field;
+            }
+        }
+
+        [Fact]
+        public void TestGoodCallerMemberAttribute()
+        {
+            string source = @"
+using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+class Program
+{
+    public static void Main() => Log();
+    public static void Log([CallerMember] Type ct = null, [CallerMember] MethodBase cm = null)
+    {
+        Console.WriteLine(ct.Name);
+        Console.WriteLine(cm.Name);
+    }
+}
+
+";
+            var compilation = CreateCompilation(source, references: [ CallerMemberAttributeReference ], options: TestOptions.ReleaseExe);
+            compilation.VerifyDiagnostics();
+            CompileAndVerify(compilation, expectedOutput: 
+@"Program
+Main");
+        }
+        
+        [Fact]
+        public void TestGoodCallerMemberAttribute_DifferentAssembly()
+        {
+            string source = @"
+using System;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+public static class FromFirstAssembly
+{
+    public static void Log([CallerMember] Type ct = null, [CallerMember] MethodBase cm = null)
+    {
+        Console.WriteLine(ct.Name);
+        Console.WriteLine(cm.Name);
+    }
+}
+";
+            var comp1 = CreateCompilation(source, references: [ CallerMemberAttributeReference ]);
+            comp1.VerifyDiagnostics();
+            var ref1 = comp1.EmitToImageReference();
+
+            var source2 = @"
+public static class Program
+{
+    public static void Main() => FromFirstAssembly.Log();
+}
+";
+
+            var compilation = CreateCompilation(source2, references: [ ref1 ], options: TestOptions.ReleaseExe);
+            compilation.VerifyDiagnostics();
+            CompileAndVerify(compilation, expectedOutput: 
+@"Program
+Main");
+        }
     }
 }

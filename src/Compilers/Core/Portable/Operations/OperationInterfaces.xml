@@ -3739,4 +3739,17 @@
       </Comments>
     </Property>
   </Node>
+  <Node Name="IMethodInfoOperation" Base="IOperation" HasType="true">
+    <Comments>
+      <summary>
+        Represents an operation that gets <see cref="System.Reflection.MethodBase" /> for the given method.
+        <para>
+        Current usage:
+        <list type="number">
+          <item><description>C# method info access</description></item>
+        </list>
+        </para>
+      </summary>
+    </Comments>
+  </Node>
 </Tree>

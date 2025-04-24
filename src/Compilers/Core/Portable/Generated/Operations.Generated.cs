@@ -3993,6 +3993,26 @@ namespace Microsoft.CodeAnalysis.Operations
         /// </summary>
         CommonConversion ElementConversion { get; }
     }
+    /// <summary>
+    /// Represents an operation that gets <see cref="System.Reflection.MethodBase" /> for the given method.
+    /// <para>
+    /// Current usage:
+    /// <list type="number">
+    ///   <item><description>C# method info access</description></item>
+    /// </list>
+    /// </para>
+    /// </summary>
+    /// <remarks>
+    /// <para>This node is associated with the following operation kinds:</para>
+    /// <list type="bullet">
+    /// <item><description><see cref="OperationKind.MethodInfo"/></description></item>
+    /// </list>
+    /// <para>This interface is reserved for implementation by its associated APIs. We reserve the right to
+    /// change it in the future.</para>
+    /// </remarks>
+    public interface IMethodInfoOperation : IOperation
+    {
+    }
     #endregion
 
     #region Implementations
@@ -10780,6 +10800,23 @@ namespace Microsoft.CodeAnalysis.Operations
         public override void Accept(OperationVisitor visitor) => visitor.VisitSpread(this);
         public override TResult? Accept<TArgument, TResult>(OperationVisitor<TArgument, TResult> visitor, TArgument argument) where TResult : default => visitor.VisitSpread(this, argument);
     }
+    internal sealed partial class MethodInfoOperation : Operation, IMethodInfoOperation
+    {
+        internal MethodInfoOperation(SemanticModel? semanticModel, SyntaxNode syntax, ITypeSymbol? type, bool isImplicit)
+            : base(semanticModel, syntax, isImplicit)
+        {
+            Type = type;
+        }
+        internal override int ChildOperationsCount => 0;
+        internal override IOperation GetCurrent(int slot, int index) => throw ExceptionUtilities.UnexpectedValue((slot, index));
+        internal override (bool hasNext, int nextSlot, int nextIndex) MoveNext(int previousSlot, int previousIndex) => (false, int.MinValue, int.MinValue);
+        internal override (bool hasNext, int nextSlot, int nextIndex) MoveNextReversed(int previousSlot, int previousIndex) => (false, int.MinValue, int.MinValue);
+        public override ITypeSymbol? Type { get; }
+        internal override ConstantValue? OperationConstantValue => null;
+        public override OperationKind Kind => OperationKind.MethodInfo;
+        public override void Accept(OperationVisitor visitor) => visitor.VisitMethodInfo(this);
+        public override TResult? Accept<TArgument, TResult>(OperationVisitor<TArgument, TResult> visitor, TArgument argument) where TResult : default => visitor.VisitMethodInfo(this, argument);
+    }
     #endregion
     #region Cloner
     internal sealed partial class OperationCloner : OperationVisitor<object?, IOperation>
@@ -11403,6 +11440,11 @@ namespace Microsoft.CodeAnalysis.Operations
             var internalOperation = (SpreadOperation)operation;
             return new SpreadOperation(Visit(internalOperation.Operand), internalOperation.ElementType, internalOperation.ElementConversionConvertible, internalOperation.OwningSemanticModel, internalOperation.Syntax, internalOperation.IsImplicit);
         }
+        public override IOperation VisitMethodInfo(IMethodInfoOperation operation, object? argument)
+        {
+            var internalOperation = (MethodInfoOperation)operation;
+            return new MethodInfoOperation(internalOperation.OwningSemanticModel, internalOperation.Syntax, internalOperation.Type, internalOperation.IsImplicit);
+        }
     }
     #endregion
     
@@ -11545,6 +11587,7 @@ namespace Microsoft.CodeAnalysis.Operations
         public virtual void VisitInlineArrayAccess(IInlineArrayAccessOperation operation) => DefaultVisit(operation);
         public virtual void VisitCollectionExpression(ICollectionExpressionOperation operation) => DefaultVisit(operation);
         public virtual void VisitSpread(ISpreadOperation operation) => DefaultVisit(operation);
+        public virtual void VisitMethodInfo(IMethodInfoOperation operation) => DefaultVisit(operation);
     }
     public abstract partial class OperationVisitor<TArgument, TResult>
     {
@@ -11684,6 +11727,7 @@ namespace Microsoft.CodeAnalysis.Operations
         public virtual TResult? VisitInlineArrayAccess(IInlineArrayAccessOperation operation, TArgument argument) => DefaultVisit(operation, argument);
         public virtual TResult? VisitCollectionExpression(ICollectionExpressionOperation operation, TArgument argument) => DefaultVisit(operation, argument);
         public virtual TResult? VisitSpread(ISpreadOperation operation, TArgument argument) => DefaultVisit(operation, argument);
+        public virtual TResult? VisitMethodInfo(IMethodInfoOperation operation, TArgument argument) => DefaultVisit(operation, argument);
     }
     #endregion
 }

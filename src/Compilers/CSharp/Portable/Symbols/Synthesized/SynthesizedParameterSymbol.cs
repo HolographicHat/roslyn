@@ -112,6 +112,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             get { throw ExceptionUtilities.Unreachable(); }
         }
 
+        internal override bool IsCallerMember
+        {
+            get { throw ExceptionUtilities.Unreachable(); }
+        }
+
         internal override int CallerArgumentExpressionParameterIndex
         {
             get { return -1; }
@@ -403,6 +408,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         internal override bool IsCallerMemberName
         {
             get => _baseParameterForAttributes?.IsCallerMemberName ?? false;
+        }
+
+        internal override bool IsCallerMember
+        {
+            get => _baseParameterForAttributes?.IsCallerMember ?? false;
         }
 
         internal override bool IsMetadataIn => RefKind is RefKind.In or RefKind.RefReadOnlyParameter || _baseParameterForAttributes?.GetDecodedWellKnownAttributeData()?.HasInAttribute == true;

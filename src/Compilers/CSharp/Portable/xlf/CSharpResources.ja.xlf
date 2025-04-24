@@ -212,6 +212,11 @@
         <target state="translated">CallerArgumentExpressionAttribute は、既定値を含むパラメーターにのみ適用できます</target>
         <note />
       </trans-unit>
+      <trans-unit id="ERR_BadCallerMemberParamWithoutDefaultValue">
+        <source>The CallerMemberAttribute may only be applied to parameters with default values</source>
+        <target state="new">The CallerMemberAttribute may only be applied to parameters with default values</target>
+        <note />
+      </trans-unit>
       <trans-unit id="ERR_BadCaseInSwitchArm">
         <source>A switch expression arm does not begin with a 'case' keyword.</source>
         <target state="translated">switch 式の arm が 'case' キーワードで始まりません。</target>
@@ -3007,6 +3012,16 @@
         <target state="translated">CallerArgumentExpressionAttribute は、オプションの引数を許可していないコンテキストで使用されるメンバーに適用されるため、無効になります</target>
         <note />
       </trans-unit>
+      <trans-unit id="WRN_CallerArgumentExpressionPreferredOverCallerMember">
+        <source>The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerArgumentExpressionAttribute.</source>
+        <target state="new">The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerArgumentExpressionAttribute.</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="WRN_CallerArgumentExpressionPreferredOverCallerMember_Title">
+        <source>The CallerMemberAttribute will have no effect; it is overridden by the CallerArgumentExpressionAttribute</source>
+        <target state="new">The CallerMemberAttribute will have no effect; it is overridden by the CallerArgumentExpressionAttribute</target>
+        <note />
+      </trans-unit>
       <trans-unit id="WRN_CallerFilePathPreferredOverCallerArgumentExpression">
         <source>The CallerArgumentExpressionAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerFilePathAttribute.</source>
         <target state="translated">パラメーター '{0}' に適用された CallerArgumentExpressionAttribute は、CallerFilePathAttribute によってオーバーライドされるため無効となります。</target>
@@ -3015,6 +3030,16 @@
       <trans-unit id="WRN_CallerFilePathPreferredOverCallerArgumentExpression_Title">
         <source>The CallerArgumentExpressionAttribute will have no effect; it is overridden by the CallerFilePathAttribute</source>
         <target state="translated">CallerArgumentExpressionAttribute は、、CallerFilePathAttribute によってオーバーライドされるため無効となります</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="WRN_CallerFilePathPreferredOverCallerMember">
+        <source>The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerFilePathAttribute.</source>
+        <target state="new">The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerFilePathAttribute.</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="WRN_CallerFilePathPreferredOverCallerMember_Title">
+        <source>The CallerMemberAttribute will have no effect; it is overridden by the CallerFilePathAttribute</source>
+        <target state="new">The CallerMemberAttribute will have no effect; it is overridden by the CallerFilePathAttribute</target>
         <note />
       </trans-unit>
       <trans-unit id="WRN_CallerLineNumberPreferredOverCallerArgumentExpression">
@@ -3027,6 +3052,16 @@
         <target state="translated">CallerArgumentExpressionAttribute は、、CallerLineNumberAttribute によってオーバーライドされるため無効となります</target>
         <note />
       </trans-unit>
+      <trans-unit id="WRN_CallerLineNumberPreferredOverCallerMember">
+        <source>The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerLineNumberAttribute.</source>
+        <target state="new">The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerLineNumberAttribute.</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="WRN_CallerLineNumberPreferredOverCallerMember_Title">
+        <source>The CallerMemberAttribute will have no effect; it is overridden by the CallerLineNumberAttribute</source>
+        <target state="new">The CallerMemberAttribute will have no effect; it is overridden by the CallerLineNumberAttribute</target>
+        <note />
+      </trans-unit>
       <trans-unit id="WRN_CallerMemberNamePreferredOverCallerArgumentExpression">
         <source>The CallerArgumentExpressionAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerMemberNameAttribute.</source>
         <target state="translated">パラメーター '{0}' に適用された CallerArgumentExpressionAttribute は、CallerMemberNameAttribute によってオーバーライドされるため無効となります。</target>
@@ -3035,6 +3070,16 @@
       <trans-unit id="WRN_CallerMemberNamePreferredOverCallerArgumentExpression_Title">
         <source>The CallerArgumentExpressionAttribute will have no effect; it is overridden by the CallerMemberNameAttribute</source>
         <target state="translated">CallerArgumentExpressionAttribute は効果がなく、CallerMemberNameAttribute によってオーバーライドされます</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="WRN_CallerMemberNamePreferredOverCallerMember">
+        <source>The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerMemberNameAttribute.</source>
+        <target state="new">The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerMemberNameAttribute.</target>
+        <note />
+      </trans-unit>
+      <trans-unit id="WRN_CallerMemberNamePreferredOverCallerMember_Title">
+        <source>The CallerMemberAttribute will have no effect; it is overridden by the CallerMemberNameAttribute</source>
+        <target state="new">The CallerMemberAttribute will have no effect; it is overridden by the CallerMemberNameAttribute</target>
         <note />
       </trans-unit>
       <trans-unit id="WRN_CapturedPrimaryConstructorParameterInFieldInitializer">

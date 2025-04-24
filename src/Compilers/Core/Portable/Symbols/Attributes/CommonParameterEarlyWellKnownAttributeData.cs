@@ -96,6 +96,22 @@ namespace Microsoft.CodeAnalysis
                 SetDataStored();
             }
         }
+
+        public bool HasCallerMemberAttribute
+        {
+            get
+            {
+                VerifySealed(expected: true);
+                return field;
+            }
+            set
+            {
+                VerifySealed(expected: false);
+                field = value;
+                SetDataStored();
+            }
+        }
+
         #endregion
     }
 }

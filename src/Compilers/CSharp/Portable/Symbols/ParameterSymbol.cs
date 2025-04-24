@@ -402,6 +402,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         internal abstract bool IsCallerMemberName { get; }
 
+        internal abstract bool IsCallerMember { get; }
+
         internal abstract int CallerArgumentExpressionParameterIndex { get; }
 
         internal abstract FlowAnalysisAnnotations FlowAnalysisAnnotations { get; }

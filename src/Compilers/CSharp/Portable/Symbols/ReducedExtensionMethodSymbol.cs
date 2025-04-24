@@ -666,6 +666,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 get { throw ExceptionUtilities.Unreachable(); }
             }
 
+            internal override bool IsCallerMember
+            {
+                // ReducedExtensionMethodParameterSymbol is only exposed to semantic model.
+                get { throw ExceptionUtilities.Unreachable(); }
+            }
+
             internal override int CallerArgumentExpressionParameterIndex
             {
                 // ReducedExtensionMethodParameterSymbol is only exposed to semantic model.

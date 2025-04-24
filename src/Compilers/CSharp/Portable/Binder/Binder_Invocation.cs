@@ -1702,6 +1702,33 @@ namespace Microsoft.CodeAnalysis.CSharp
                     var argument = argumentsBuilder[argumentIndex];
                     defaultValue = new BoundLiteral(syntax, ConstantValue.Create(argument.Syntax.ToString()), Compilation.GetSpecialType(SpecialType.System_String)) { WasCompilerGenerated = true };
                 }
+                else if (callerSourceLocation is object
+                         && parameter.IsCallerMember
+                         && containingMember is not null
+                         && parameter.Type.Equals(Compilation.GetWellKnownType(WellKnownType.System_Type)))
+                {
+                    var boundType = new BoundTypeExpression(syntax, null, containingMember.ContainingType);
+                    defaultValue = new BoundTypeOfOperator(syntax, boundType, null, Compilation.GetWellKnownType(WellKnownType.System_Type)) { WasCompilerGenerated = true };
+                }
+                else if (callerSourceLocation is object
+                         && parameter.IsCallerMember
+                         && containingMember is MethodSymbol containingMethod
+                         && parameter.Type.Equals(Compilation.GetWellKnownType(WellKnownType.System_Reflection_MethodBase)))
+                {
+                    bool isNotInGenericType = containingMember.ContainingType.AllTypeArgumentCount() == 0 && !containingMember.ContainingType.IsAnonymousType;
+                    defaultValue = new BoundMethodInfo(
+                        syntax,
+                        containingMethod, // https://github.com/dotnet/csharplang/discussions/9017#discussioncomment-11755449
+                        (MethodSymbol) Compilation.GetWellKnownTypeMember(
+                            isNotInGenericType
+                                ? WellKnownMember.System_Reflection_MethodBase__GetMethodFromHandle
+                                : WellKnownMember.System_Reflection_MethodBase__GetMethodFromHandle2),
+                        Compilation.GetWellKnownType(WellKnownType.System_Reflection_MethodBase)
+                    ) { WasCompilerGenerated = true };
+                    // TODO: caller Assembly
+                    // TODO: Attribute constructor
+                    // TODO: object F1 = Test(); static object F2 = Test();
+                }
                 else if (defaultConstantValue == ConstantValue.NotAvailable)
                 {
                     // There is no constant value given for the parameter in source/metadata.

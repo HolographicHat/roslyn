@@ -96,6 +96,8 @@ namespace Microsoft.CodeAnalysis.Operations
                     return CreateBoundSizeOfOperatorOperation((BoundSizeOfOperator)boundNode);
                 case BoundKind.TypeOfOperator:
                     return CreateBoundTypeOfOperatorOperation((BoundTypeOfOperator)boundNode);
+                case BoundKind.MethodInfo:
+                    return CreateBoundMethodInfoOperation((BoundMethodInfo)boundNode);
                 case BoundKind.ArrayCreation:
                     return CreateBoundArrayCreationOperation((BoundArrayCreation)boundNode);
                 case BoundKind.ArrayInitialization:
@@ -1199,6 +1201,14 @@ namespace Microsoft.CodeAnalysis.Operations
             ITypeSymbol? type = boundTypeOfOperator.GetPublicTypeSymbol();
             bool isImplicit = boundTypeOfOperator.WasCompilerGenerated;
             return new TypeOfOperation(typeOperand, _semanticModel, syntax, type, isImplicit);
+        }
+
+        private IMethodInfoOperation CreateBoundMethodInfoOperation(BoundMethodInfo boundMethodInfo)
+        {
+            SyntaxNode syntax = boundMethodInfo.Syntax;
+            ITypeSymbol? type = boundMethodInfo.GetPublicTypeSymbol();
+            bool isImplicit = boundMethodInfo.WasCompilerGenerated;
+            return new MethodInfoOperation(_semanticModel, syntax, type, isImplicit);
         }
 
         private IArrayCreationOperation CreateBoundArrayCreationOperation(BoundArrayCreation boundArrayCreation)

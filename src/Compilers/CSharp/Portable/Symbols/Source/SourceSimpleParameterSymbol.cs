@@ -120,6 +120,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             get { return false; }
         }
 
+        internal override bool IsCallerMember
+        {
+            get { return false; }
+        }
+
         internal override int CallerArgumentExpressionParameterIndex
         {
             get { return -1; }

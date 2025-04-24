@@ -126,6 +126,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         internal override bool IsCallerMemberName => GetEarlyDecodedWellKnownAttributeData()?.HasCallerMemberNameAttribute == true;
 
+        internal override bool IsCallerMember => GetEarlyDecodedWellKnownAttributeData()?.HasCallerMemberAttribute == true;
+
         internal override int CallerArgumentExpressionParameterIndex
         {
             get
@@ -666,6 +668,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 else if (CSharpAttributeData.IsTargetEarlyAttribute(arguments.AttributeType, arguments.AttributeSyntax, AttributeDescription.CallerMemberNameAttribute))
                 {
                     arguments.GetOrCreateData<ParameterEarlyWellKnownAttributeData>().HasCallerMemberNameAttribute = true;
+                }
+                else if (CSharpAttributeData.IsTargetEarlyAttribute(arguments.AttributeType, arguments.AttributeSyntax, AttributeDescription.CallerMemberAttribute))
+                {
+                    arguments.GetOrCreateData<ParameterEarlyWellKnownAttributeData>().HasCallerMemberAttribute = true;
                 }
                 else if (CSharpAttributeData.IsTargetEarlyAttribute(arguments.AttributeType, arguments.AttributeSyntax, AttributeDescription.CallerArgumentExpressionAttribute))
                 {

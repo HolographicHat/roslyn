@@ -8161,4 +8161,31 @@ To remove the warning, you can use /reference instead (set the Embed Interop Typ
   <data name="ERR_ExtensionTypeNameDisallowed" xml:space="preserve">
     <value>Types and aliases cannot be named 'extension'.</value>
   </data>
+  <data name="ERR_BadCallerMemberParamWithoutDefaultValue" xml:space="preserve">
+    <value>The CallerMemberAttribute may only be applied to parameters with default values</value>
+  </data>
+  <data name="WRN_CallerMemberNamePreferredOverCallerMember" xml:space="preserve">
+    <value>The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerMemberNameAttribute.</value>
+  </data>
+  <data name="WRN_CallerMemberNamePreferredOverCallerMember_Title" xml:space="preserve">
+    <value>The CallerMemberAttribute will have no effect; it is overridden by the CallerMemberNameAttribute</value>
+  </data>
+  <data name="WRN_CallerArgumentExpressionPreferredOverCallerMember" xml:space="preserve">
+    <value>The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerArgumentExpressionAttribute.</value>
+  </data>
+  <data name="WRN_CallerArgumentExpressionPreferredOverCallerMember_Title" xml:space="preserve">
+    <value>The CallerMemberAttribute will have no effect; it is overridden by the CallerArgumentExpressionAttribute</value>
+  </data>
+  <data name="WRN_CallerFilePathPreferredOverCallerMember" xml:space="preserve">
+    <value>The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerFilePathAttribute.</value>
+  </data>
+  <data name="WRN_CallerFilePathPreferredOverCallerMember_Title" xml:space="preserve">
+    <value>The CallerMemberAttribute will have no effect; it is overridden by the CallerFilePathAttribute</value>
+  </data>
+  <data name="WRN_CallerLineNumberPreferredOverCallerMember" xml:space="preserve">
+    <value>The CallerMemberAttribute applied to parameter '{0}' will have no effect. It is overridden by the CallerLineNumberAttribute.</value>
+  </data>
+  <data name="WRN_CallerLineNumberPreferredOverCallerMember_Title" xml:space="preserve">
+    <value>The CallerMemberAttribute will have no effect; it is overridden by the CallerLineNumberAttribute</value>
+  </data>
 </root>

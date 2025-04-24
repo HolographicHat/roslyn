@@ -100,6 +100,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             get { return _underlyingParameter.IsCallerMemberName; }
         }
 
+        internal override bool IsCallerMember
+        {
+            get { return _underlyingParameter.IsCallerMember; }
+        }
+
         internal override int CallerArgumentExpressionParameterIndex
         {
             get { return _underlyingParameter.CallerArgumentExpressionParameterIndex; }

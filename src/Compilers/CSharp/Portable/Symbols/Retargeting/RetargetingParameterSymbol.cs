@@ -155,6 +155,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Retargeting
             get { return _underlyingParameter.IsCallerMemberName; }
         }
 
+        internal sealed override bool IsCallerMember
+        {
+            get { return _underlyingParameter.IsCallerMember; }
+        }
+
         internal sealed override int CallerArgumentExpressionParameterIndex
         {
             get { return _underlyingParameter.CallerArgumentExpressionParameterIndex; }
